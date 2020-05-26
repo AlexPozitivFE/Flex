@@ -173,10 +173,10 @@ request.onload = function() {
 let button;
 let imgSrc;
 window.onload = function() {
-    imgSrc = '';
     button = document.getElementsByClassName('images');
     for(let i = 0; i<button.length; i++) {
         button[i].addEventListener('click', function() {
+            imgSrc = '';
             imgSrc = this.src;
             localStorage.setItem('imgSrc', imgSrc);
             alert(imgSrc);

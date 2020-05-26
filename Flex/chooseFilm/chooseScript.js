@@ -14,15 +14,25 @@ let requestURL4 = 'https://restapicinema.herokuapp.com/films';
 
 function chooseFilm(jsonObj) {
     for(let i = 0; i<jsonObj.length; i++) {
-        if(a1 == jsonObj[i]['image']) {
+        if(a1 == jsonObj[i]['image'] || a1 == jsonObj[i]['name']) {
             filmId = jsonObj[i]['idfilm'];
             localStorage.setItem('filmId', filmId);
             let img = document.createElement('img');
             img.src = jsonObj[i]['image'];
             img.classList.add('image-film');
             img.style = 'max-width: 300px; width: auto; margin: 30px 30px;';
-            document.querySelector('.img-video').appendChild(img);
+            document.querySelector('.up').appendChild(img);
 
+            let vdiv = document.createElement('div');
+            vdiv.classList.add('video');
+            document.querySelector('.up').appendChild(vdiv);
+            let video1 = document.createElement('iframe');
+            video1.src = 'https://www.youtube.com/embed/SlgMigqO_Kc';
+            video1.style = 'width: 600px; height: 425px;';
+            video1.frameBorder = '0';
+            document.querySelector('.video').appendChild(video1);
+            let div = document.querySelector('.up');
+            div.style = 'display: flex; align-items: center;';
            /* let video = document.createElement('video');
             video.src = jsonObj[i]['trailer'];
             video.type = 'video/mp4';
@@ -45,6 +55,9 @@ function chooseFilm(jsonObj) {
             let p3 = document.createElement('h3');
             p3.innerHTML = jsonObj[i]['description'];
             document.querySelector('.description').appendChild(p3);
+
+            let desc = document.querySelector('.description');
+            desc.style = 'width: 550px';
         }
     }
 }

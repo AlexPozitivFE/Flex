@@ -1,7 +1,7 @@
 let film = localStorage.getItem('filmId');
 let date = localStorage.getItem('date');
-let hall = localStorage.getItem('hall');
-//let hall = 'IMAX';
+//let hall = localStorage.getItem('hall');
+let hall = 'IMAX';
 let idSession = localStorage.getItem('idSession');
 alert(idSession);
 //alert(film);
@@ -62,7 +62,10 @@ request.onload = function() {
         for(let i = 0; i < places.length; i++) {
             for(let j = 0; j < jsonObj.length; j++) {
                 if(places[i].innerHTML == jsonObj[j]['place'] && places[i].id == jsonObj[j]['rownum']) {
-                    places[i].style = 'background-color: blue';
+                    places[i].style = 'background-color: #474441; text-align: center; align-items: center; color: white;';
+                    places[i].addEventListener('click', function() {
+                    places[i].style = 'background-color: #474441; text-align: center; align-items: center; color: white;';
+                    });
                 }
             }
         }
@@ -100,9 +103,20 @@ request.onload = function() {
                     } else {
                         let td = document.createElement('td');
                         td.classList.add('place-td');
+                        td.classList.add('place-td2');
                         td.innerHTML = `${j - 2}`;
                         td.id = `${i + 1}`;
-                        td.style = 'width: 25px; height: 25px; background-color: red;';
+                        td.style = 'width: 25px; height: 25px; background-color: #330570; text-align: center; align-items: center; color: white;';
+                        let tdd = 'width: 25px; height: 25px; background-color: #330570; text-align: center; align-items: center; color: white;';
+                        td.addEventListener('click', function() {
+                            if(tdd == 'width: 25px; height: 25px; background-color: #330570; text-align: center; align-items: center; color: white;') {
+                                td.style = 'width: 25px; height: 25px; background-color: #43AE32; text-align: center; align-items: center; color: white;';
+                                tdd = 'width: 25px; height: 25px; background-color: #43AE32; text-align: center; align-items: center; color: white;';
+                            } else {
+                                td.style = 'width: 25px; height: 25px; background-color: #330570; text-align: center; align-items: center; color: white;';
+                                tdd = 'width: 25px; height: 25px; background-color: #330570; text-align: center; align-items: center; color: white;';
+                            }
+                        });
                         tr.appendChild(td);
                     }
                 }  
@@ -135,7 +149,17 @@ request.onload = function() {
                         td.classList.add('place-td');
                         td.id = `${i + 2}`;
                         td.innerHTML = `${j - 1}`;
-                        td.style = 'width: 25px; height: 25px; background-color: red;';
+                        td.style = 'width: 25px; height: 25px; background-color: #330570; text-align: center; align-items: center; color: white;';
+                        let tdd = 'width: 25px; height: 25px; background-color: #330570; text-align: center; align-items: center; color: white;';
+                        td.addEventListener('click', function() {
+                            if(tdd == 'width: 25px; height: 25px; background-color: #330570; text-align: center; align-items: center; color: white;') {
+                                td.style = 'width: 25px; height: 25px; background-color: #43AE32; text-align: center; align-items: center; color: white;';
+                                tdd = 'width: 25px; height: 25px; background-color: #43AE32; text-align: center; align-items: center; color: white;';
+                            } else {
+                                td.style = 'width: 25px; height: 25px; background-color: #330570; text-align: center; align-items: center; color: white;';
+                                tdd = 'width: 25px; height: 25px; background-color: #330570; text-align: center; align-items: center; color: white;';
+                            }
+                        });
                         tr.appendChild(td);
                     }
                 }  
@@ -162,7 +186,17 @@ request.onload = function() {
             td.classList.add('place-td');
             td.id = `${i + 3}`;
             td.innerHTML = `${j + 1}`;
-            td.style = 'width: 25px; height: 25px; background-color: red;';
+            td.style = 'width: 25px; height: 25px; background-color: #330570; text-align: center; align-items: center; color: white;';
+            let tdd = 'width: 25px; height: 25px; background-color: #330570; text-align: center; align-items: center; color: white;';
+            td.addEventListener('click', function() {
+                if(tdd == 'width: 25px; height: 25px; background-color: #330570; text-align: center; align-items: center; color: white;') {
+                    td.style = 'width: 25px; height: 25px; background-color: #43AE32; text-align: center; align-items: center; color: white;';
+                    tdd = 'width: 25px; height: 25px; background-color: #43AE32; text-align: center; align-items: center; color: white;';
+                } else {
+                    td.style = 'width: 25px; height: 25px; background-color: #330570; text-align: center; align-items: center; color: white;';
+                    tdd = 'width: 25px; height: 25px; background-color: #330570; text-align: center; align-items: center; color: white;';
+                }
+            });
             tr.appendChild(td);
         }
         document.querySelector('#placeTable').appendChild(tr);
@@ -199,7 +233,17 @@ function create_4D_0() {
                     td.classList.add('place-td');
                     td.innerHTML = `${j - 2}`;
                     td.id = `${i + 1}`;
-                    td.style = 'width: 25px; height: 25px; background-color: red;';
+                    td.style = 'width: 25px; height: 25px; background-color: #330570; text-align: center; align-items: center; color: white;';
+                    let tdd = 'width: 25px; height: 25px; background-color: #330570; text-align: center; align-items: center; color: white;';
+                    td.addEventListener('click', function() {
+                        if(tdd == 'width: 25px; height: 25px; background-color: #330570; text-align: center; align-items: center; color: white;') {
+                            td.style = 'width: 25px; height: 25px; background-color: #43AE32; text-align: center; align-items: center; color: white;';
+                            tdd = 'width: 25px; height: 25px; background-color: #43AE32; text-align: center; align-items: center; color: white;';
+                        } else {
+                            td.style = 'width: 25px; height: 25px; background-color: #330570; text-align: center; align-items: center; color: white;';
+                            tdd = 'width: 25px; height: 25px; background-color: #330570; text-align: center; align-items: center; color: white;';
+                        }
+                    });
                     tr.appendChild(td);
                 }
             }  
@@ -232,7 +276,17 @@ function create_4D_1() {
                     td.classList.add('place-td');
                     td.innerHTML = `${j - 1}`;
                     td.id = `${i + 2}`;
-                    td.style = 'width: 25px; height: 25px; background-color: red;';
+                    td.style = 'width: 25px; height: 25px; background-color: #330570; text-align: center; align-items: center; color: white;';
+                    let tdd = 'width: 25px; height: 25px; background-color: #330570; text-align: center; align-items: center; color: white;';
+                    td.addEventListener('click', function() {
+                        if(tdd == 'width: 25px; height: 25px; background-color: #330570; text-align: center; align-items: center; color: white;') {
+                            td.style = 'width: 25px; height: 25px; background-color: #43AE32; text-align: center; align-items: center; color: white;';
+                            tdd = 'width: 25px; height: 25px; background-color: #43AE32; text-align: center; align-items: center; color: white;';
+                        } else {
+                            td.style = 'width: 25px; height: 25px; background-color: #330570; text-align: center; align-items: center; color: white;';
+                            tdd = 'width: 25px; height: 25px; background-color: #330570; text-align: center; align-items: center; color: white;';
+                        }
+                    });
                     tr.appendChild(td);
                 }
             }  
@@ -259,7 +313,17 @@ function create_4D_M() {
         td.classList.add('place-td');
         td.id = `${i + 3}`;
         td.innerHTML = `${j + 1}`;
-        td.style = 'width: 25px; height: 25px; background-color: red;';
+        td.style = 'width: 25px; height: 25px; background-color: #330570; text-align: center; align-items: center; color: white;';
+        let tdd = 'width: 25px; height: 25px; background-color: #330570; text-align: center; align-items: center; color: white;';
+        td.addEventListener('click', function() {
+            if(tdd == 'width: 25px; height: 25px; background-color: #330570; text-align: center; align-items: center; color: white;') {
+                td.style = 'width: 25px; height: 25px; background-color: #43AE32; text-align: center; align-items: center; color: white;';
+                tdd = 'width: 25px; height: 25px; background-color: #43AE32; text-align: center; align-items: center; color: white;';
+            } else {
+                td.style = 'width: 25px; height: 25px; background-color: #330570; text-align: center; align-items: center; color: white;';
+                tdd = 'width: 25px; height: 25px; background-color: #330570; text-align: center; align-items: center; color: white;';
+            }
+        });
         tr.appendChild(td);
     }
     document.querySelector('#placeTable').appendChild(tr);
@@ -295,7 +359,17 @@ function create_IMAX_0() {
                     let td = document.createElement('td');
                     td.classList.add('place-td');
                     td.innerHTML = `${j - 2}`;
-                    td.style = 'width: 25px; height: 25px; background-color: red;';
+                    td.style = 'width: 25px; height: 25px; background-color: #330570; text-align: center; align-items: center; color: white;';
+                    let tdd = 'width: 25px; height: 25px; background-color: #330570; text-align: center; align-items: center; color: white;';
+                    td.addEventListener('click', function() {
+                        if(tdd == 'width: 25px; height: 25px; background-color: #330570; text-align: center; align-items: center; color: white;') {
+                            td.style = 'width: 25px; height: 25px; background-color: #43AE32; text-align: center; align-items: center; color: white;';
+                            tdd = 'width: 25px; height: 25px; background-color: #43AE32; text-align: center; align-items: center; color: white;';
+                        } else {
+                            td.style = 'width: 25px; height: 25px; background-color: #330570; text-align: center; align-items: center; color: white;';
+                            tdd = 'width: 25px; height: 25px; background-color: #330570; text-align: center; align-items: center; color: white;';
+                        }
+                    });
                     tr.appendChild(td);
                 }
             }  
@@ -327,7 +401,17 @@ function create_IMAX_1() {
                     let td = document.createElement('td');
                     td.classList.add('place-td');
                     td.innerHTML = `${j - 1}`;
-                    td.style = 'width: 25px; height: 25px; background-color: red;';
+                    td.style = 'width: 25px; height: 25px; background-color: #330570; text-align: center; align-items: center; color: white;';
+                    let tdd = 'width: 25px; height: 25px; background-color: #330570; text-align: center; align-items: center; color: white;';
+                    td.addEventListener('click', function() {
+                        if(tdd == 'width: 25px; height: 25px; background-color: #330570; text-align: center; align-items: center; color: white;') {
+                            td.style = 'width: 25px; height: 25px; background-color: #43AE32; text-align: center; align-items: center; color: white;';
+                            tdd = 'width: 25px; height: 25px; background-color: #43AE32; text-align: center; align-items: center; color: white;';
+                        } else {
+                            td.style = 'width: 25px; height: 25px; background-color: #330570; text-align: center; align-items: center; color: white;';
+                            tdd = 'width: 25px; height: 25px; background-color: #330570; text-align: center; align-items: center; color: white;';
+                        }
+                    });
                     tr.appendChild(td);
                 }
             }  
@@ -353,7 +437,17 @@ function create_IMAX_M() {
         let td = document.createElement('td');
         td.classList.add('place-td');
         td.innerHTML = `${j + 1}`;
-        td.style = 'width: 25px; height: 25px; background-color: red;';
+        td.style = 'width: 25px; height: 25px; background-color: #330570; text-align: center; align-items: center; color: white;';
+        let tdd = 'width: 25px; height: 25px; background-color: #330570; text-align: center; align-items: center; color: white;';
+        td.addEventListener('click', function() {
+            if(tdd == 'width: 25px; height: 25px; background-color: #330570; text-align: center; align-items: center; color: white;') {
+                td.style = 'width: 25px; height: 25px; background-color: #43AE32; text-align: center; align-items: center; color: white;';
+                tdd = 'width: 25px; height: 25px; background-color: #43AE32; text-align: center; align-items: center; color: white;';
+            } else {
+                td.style = 'width: 25px; height: 25px; background-color: #330570; text-align: center; align-items: center; color: white;';
+                tdd = 'width: 25px; height: 25px; background-color: #330570; text-align: center; align-items: center; color: white;';
+            }
+        });
         tr.appendChild(td);
     }
     document.querySelector('#placeTable').appendChild(tr);

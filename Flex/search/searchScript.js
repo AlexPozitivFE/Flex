@@ -330,16 +330,21 @@ function searchFilm() {
                 }
             }
             break;
-        } /*else if(templateArr.length == 1) {
-            arr1 = templateArr[0];                                  PROBLEM
-            arr2 = templateArr[0];
-            finalFinal = [];
-            for(let q = 0; q < arr1.length; q++) {
-                if(arr2.indexOf(arr1[q]) != -1) {
-                    finalFinal.push(arr1[q]);
+        } else if(templateArr.length == 1) {
+            arr1.push(templateArr[0][0]); 
+            if(templateArr[0].length > 1) {                                 
+                for(let h = 1; h < templateArr[0].length; h++) {
+                    arr2.push(templateArr[0][h]);
                 }
-            }   
-        }*/
+            }
+            finalFinal = [];
+            for(let b = 0; b < arr1.length; b++) {
+                if(arr1.indexOf(arr2[b]) != -1) {
+                    finalFinal.push(arr2[b]);
+                }
+            }
+            break;
+        }
     }
 
     /*finalFinal = [];
@@ -369,6 +374,7 @@ function searchFilm() {
                         let div = document.createElement('div');
                         div.id = `ex-film${i}`;
                         div.classList.add('ex-film');
+                        div.style = 'display: flex; align-items: center; margin: 20px 20px';
                         document.querySelector('.films_list').appendChild(div);
 
                         let img = document.createElement('img');
@@ -379,6 +385,34 @@ function searchFilm() {
                             img.src = `${jsonObj[i]['image']}`;
                         }
                         document.getElementById(`ex-film${i}`).appendChild(img);
+
+                        let div2 = document.createElement('div');
+                        div2.classList.add(`div2${i}`);
+                        div2.style = 'width:300px; margin:0 30px';
+                        document.querySelector(`#ex-film${i}`).appendChild(div2);
+
+                        let a = document.createElement('button');
+                        a.style = 'text-decoration: none; width:150px; height:40px; font-zize:40px; background-color: #6200EE; text-align: center; color: white; font-weight: 600; align-items:center';
+                        a.innerHTML = 'Order';
+                        a.value = jsonObj[i]['name'];
+                        a.addEventListener('click', function() {
+                            location.href = '../chooseFilm/chooseFilm.html';
+                            imgSrc = a.value;
+                            localStorage.setItem('imgSrc', imgSrc);
+                        });
+                        document.querySelector(`#ex-film${i}`).appendChild(a);
+
+                        let h3_1 = document.createElement('h3');
+                        h3_1.innerHTML = `Name: ${jsonObj[i]['name']}`;
+                        document.querySelector(`.div2${i}`).appendChild(h3_1);
+
+                        let h3_2 = document.createElement('h3');
+                        h3_2.innerHTML = `Genre: ${jsonObj[i]['genre']}`;
+                        document.querySelector(`.div2${i}`).appendChild(h3_2);
+                        
+                        let h3_3 = document.createElement('h3');
+                        h3_3.innerHTML = `Rating: ${jsonObj[i]['ageLimit']}`;
+                        document.querySelector(`.div2${i}`).appendChild(h3_3);
                     }
                 }
             }
@@ -388,7 +422,7 @@ function searchFilm() {
 }
 }
 
-
+let imgSrc;
 let dateNow = new Date();
 let date2Now = new Date();
 
