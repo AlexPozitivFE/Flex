@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="google-signin-scope" content="https://www.googleapis.com/auth/userinfo.profile">
+        <meta name="google-signin-client_id" content="753697512352-s81372ni3mmngn4hvudc8ns34hen9n27.apps.googleusercontent.com">
+        <link href="../general.css" rel="stylesheet">
+        <link href="pickPlaceStyle.css">
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVMeVsxdZZMpv233BkA3UT3NoT3PkgvQs&callback=initMap"
+        type="text/javascript"></script>
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+        <script src="https://kit.fontawesome.com/80cd391787.js" crossorigin="anonymous"></script>
+        <title>Flex</title>
+    </head>
+    <body>
+        <header>
+            <div class="container" id="top">
+                <img src="../img/flex-logo.png" class="logo">
+                <nav class="header-nav">
+                    <a class="header-nav-link" href="#">Films</a>
+                    <a class="header-nav-link" href="#">Discount</a>
+                    <a class="header-nav-link" href="#">Schedule</a>
+                    <a class="header-nav-link" href="#">Support</a>
+                </nav>
+                <i class="fas fa-gift"></i>
+                <select class="cinema-list">
+                    <option>Winter FLEX</option>
+                    <option>Spring FLEX</option>
+                    <option>Summer FLEX</option>
+                    <option>Autumn FLEX</option>
+                </select>
+                <i class="fas fa-map-marker-alt"></i>
+                <i class="fas fa-shopping-basket"></i>
+                <i class="fas fa-user"></i>
+            </div>  
+        </header>
+        <main>
+            <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                <div class="user" id="user">
+                    <div class="userImg"></div>
+                    <div class="userDesc"></div>
+                </div>
+        </main>
+
+        <footer>
+            <div class="footer-div">
+                <div>
+                    <h1>Flex</h1>
+                    <p>Enjoy watching!</p>
+                </div>
+                <div>
+                    <h3>Recent Posts</h3>
+                    <p>Bulk discount on films</p>
+                    <p>Get a gift popcorn</p>
+                </div>
+                <div>
+                    <h3>Latest updates</h3>
+                </div>
+                <div>
+                    <h3>Contact Us</h3>
+                    <table class="footer-table">
+                        <tr>
+                        <td><i class="fab fa-instagram"></i></td>
+                        <td><i class="fab fa-facebook-square"></i></td>
+                        <td><i class="fab fa-telegram"></i></td>
+                        </tr>
+                        <tr>
+                            <td><i class="fab fa-twitter-square"></i></td>
+                            <td><i class="fab fa-viber"></i></td>
+                            <td><i class="fab fa-vk"></i></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </footer>
+        <script src="./accountScript.js"></script>
+    </body>
+</html>

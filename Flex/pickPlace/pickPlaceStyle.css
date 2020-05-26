@@ -1,0 +1,10 @@
+.film-pick {
+    display: flex;
+}
+#placeTable {
+    width: 500px;
+    border-spacing: 20px;
+}
+.pick-place {
+    width: 500px;
+}

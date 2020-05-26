@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <script src="https://kit.fontawesome.com/80cd391787.js" crossorigin="anonymous"></script>
+        <script defer src="../search/searchScript.js"></script>
+        <link href="../general.css" rel="stylesheet">
+        <link href="../search/searchStyle.css" rel="stylesheet">
+        <title>Flex</title>
+    </head>
+    <body>
+        <header>
+            <div class="container" id="top">
+                <img src="../img/flex-logo.png" class="logo">
+                <nav class="header-nav">
+                    <a class="header-nav-link" href="#">Films</a>
+                    <a class="header-nav-link" href="#">Discount</a>
+                    <a class="header-nav-link" href="#">Schedule</a>
+                    <a class="header-nav-link" href="#">Support</a>
+                </nav>
+                <i class="fas fa-gift"></i>
+                <select class="cinema-list">
+                    <option>Winter FLEX</option>
+                    <option>Spring FLEX</option>
+                    <option>Summer FLEX</option>
+                    <option>Autumn FLEX</option>
+                </select>
+                <i class="fas fa-map-marker-alt"></i>
+                <i class="fas fa-shopping-basket"></i>
+                <i class="fas fa-user"></i>
+            </div>  
+        </header>
+
+        <main>
+            <div class="main-search">
+                <div class="period">
+                    <h2 class="main-h2">Period</h2>
+                    <p><input type="radio" name="period" value="today">Today</p>
+                    <p><input type="radio" name="period" value="tomorrow">Tomorrow</p>
+                    <p><input type="radio" name="period" value="thisWeek">This week</p>
+                    <p><input type="radio" name="period" value="thisMonth">This month</p>
+                </div>
+                <div class="genre">
+                    <h2 class="main-h2">Genre</h2>
+                    <select class="genre-list" id="genre-list">
+                    </select>
+                </div>
+                <div class="rating">
+                    <h2 class="main-h2">Rating</h2>
+                    <p class="rating-p1">
+                        For children
+                        <input type="checkbox" class="checkb" value="18">
+                    </p>
+                    <p class="rating-p1">
+                        For adults
+                        <input type="checkbox" class="checkb" value="21">
+                    </p>
+                    <p class="rating-p1">
+                        For mature
+                        <input type="checkbox" class="checkb" value="30">
+                    </p>
+                    <p class="rating-p1">
+                        Explicit content
+                        <input type="checkbox" class="checkb" value="100">
+                    </p>
+                </div>
+                <div class="format">
+                    <h2 class="main-h2">Format</h2>
+                </div>
+            </div>
+            <button id="search">Search</button>
+            <div class="films_list" id="films_list">
+
+            </div>
+        </main>
+
+        <footer>
+            <div class="footer-div">
+                <div>
+                    <h1>Flex</h1>
+                    <p>Enjoy watching!</p>
+                </div>
+                <div>
+                    <h3>Recent Posts</h3>
+                    <p>Bulk discount on films</p>
+                    <p>Get a gift popcorn</p>
+                </div>
+                <div>
+                    <h3>Latest updates</h3>
+                </div>
+                <div>
+                    <h3>Contact Us</h3>
+                    <table class="footer-table">
+                        <tr>
+                        <td><i class="fab fa-instagram"></i></td>
+                        <td><i class="fab fa-facebook-square"></i></td>
+                        <td><i class="fab fa-telegram"></i></td>
+                        </tr>
+                        <tr>
+                            <td><i class="fab fa-twitter-square"></i></td>
+                            <td><i class="fab fa-viber"></i></td>
+                            <td><i class="fab fa-vk"></i></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>

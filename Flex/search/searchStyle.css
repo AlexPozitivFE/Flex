@@ -1,0 +1,29 @@
+.checkb {
+    margin-bottom: 20px;
+}
+.main-search {
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+}
+#search {
+    width: 130px;
+    height: 40px;
+    font-size: 20px;
+    background: white;
+    border: 3px solid #6200EE;
+    color: #6200EE;
+    font-weight: 600;
+}
+#search:hover {
+    background: #6200EE;
+    color: white;
+}
+main {
+    max-width: 1100px;
+    width: auto;
+    margin: 0 auto;
+}
+
+.film-img {
+    width: 200px;
+}
