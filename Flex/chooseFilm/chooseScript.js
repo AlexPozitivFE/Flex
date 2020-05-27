@@ -1,6 +1,40 @@
 let a1 = localStorage.getItem('imgSrc');
 alert(a1);
 let filmId;
+let section1 = document.querySelector('.container select');
+
+let requestURL3 = 'https://restapicinema.herokuapp.com/cinema';
+let request3 = new XMLHttpRequest();
+request3.open('GET', requestURL3, true);
+request3.responseType = 'json';
+request3.send();
+request3.onload = function() {
+    var films3 = request3.response;
+    populateCinemas(films3);
+    //checkList();
+  }
+
+
+function populateCinemas(jsonObj) {
+    for(let j = 0; j < jsonObj.length; j++) {
+        let option = document.createElement('option');
+        option.innerHTML = `${jsonObj[j]['name']}, ${jsonObj[j]['adress']}`;
+        option.value = jsonObj[j]['idcinema'];
+        option.classList.add('options');
+        document.querySelector('.cinema-list').appendChild(option);
+        section1.addEventListener('change', checkList);
+       // section1.addEventListener('change', deletFilms);
+        if(j == 0) {
+            address = option.value;
+        }
+    }
+
+    function checkList() {
+        var select = document.getElementsByClassName('options');
+            address = this.value;
+            alert(address);
+            //alert(currentCinema);
+    }
 
 let requestURL4 = 'https://restapicinema.herokuapp.com/films';
     let request4 = new XMLHttpRequest();
@@ -27,7 +61,7 @@ function chooseFilm(jsonObj) {
             vdiv.classList.add('video');
             document.querySelector('.up').appendChild(vdiv);
             let video1 = document.createElement('iframe');
-            video1.src = 'https://www.youtube.com/embed/SlgMigqO_Kc';
+            video1.src = jsonObj[i]['trailer'];
             video1.style = 'width: 600px; height: 425px;';
             video1.frameBorder = '0';
             document.querySelector('.video').appendChild(video1);
@@ -204,6 +238,7 @@ function infoHalls() {
                     p2.innerHTML = `${hourStart[i]}:${minuteStart[i]} - ${hourEnd[i]}:${minuteEnd[i]}`;
                     document.querySelector('.div2').appendChild(p2);
                 }
-        }
-    }   
+            }
+        }   
+    }
 }

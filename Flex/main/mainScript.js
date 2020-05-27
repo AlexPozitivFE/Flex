@@ -122,20 +122,12 @@ function populateCinemas(jsonObj) {
 function checkList() {
     var select = document.getElementsByClassName('options');
         address = this.value;
+        localStorage.getItem('address', address);
         alert(address);
         //alert(currentCinema);
 }
 
-/*function deletFilms() {
-    let d = document.getElementById('table1');
-            if(d.childNodes) {
-                while(d.firstChild) {
-                    d.removeChild(d.firstChild);
-                }
-            }
-}
-*/
-let requestURL = 'https://restapicinema.herokuapp.com/films';
+let requestURL = 'https://restapicinema.herokuapp.com/films/actual';
 let request = new XMLHttpRequest();
 request.open('GET', requestURL, true);
 request.responseType = 'json';
@@ -170,8 +162,45 @@ request.onload = function() {
             }
         }
     }
+
+    let requestURL3 = 'https://restapicinema.herokuapp.com/films/soon';
+    let request3 = new XMLHttpRequest();
+    request3.open('GET', requestURL3, true);
+    request3.responseType = 'json';
+    request3.send();
+    request3.onload = function() {
+        var films3 = request3.response;
+        populateFilms2(films3);
+      }
+        function populateFilms2(jsonObj) {
+            for(let i = 0; i<jsonObj.length; i++) {
+                if(jsonObj[i]['image'] == '') {
+                    continue;
+                } else {
+                let row = document.createElement('tr');
+                document.querySelector('.film-table2').appendChild(row);
+                row.classList.add('rows2');
+                if(i > 4) {
+                    document.querySelector('.film-table2').appendChild(row);
+                    row.classList.add('rows2');
+                }
+                    let ar = document.createElement('a');
+                    let img = document.createElement('img');
+                    ar.href = '../chooseFilm/chooseFilm.html';
+                    ar.innerHTML = img.src;
+                    row.innerHTML = ar.innerHTML; 
+                    ar.classList.add('links2');
+       
+                    document.querySelector('.rows2').appendChild(ar);
+                    document.querySelector('.links2').appendChild(img);
+                    img.src = jsonObj[i]['image'];
+                    img.classList.add('images2');
+                }
+            }
+        }
+
 let button;
-let imgSrc;
+let imgSrc = '';
 window.onload = function() {
     button = document.getElementsByClassName('images');
     for(let i = 0; i<button.length; i++) {
