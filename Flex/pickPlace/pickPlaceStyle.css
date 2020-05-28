@@ -7,4 +7,8 @@
 }
 .pick-place {
     width: 500px;
+    margin-top: 30px;
+}
+.basket_button {
+    width: 250px;
 }

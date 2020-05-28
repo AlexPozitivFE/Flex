@@ -11,16 +11,16 @@
     <body>
         <header>
             <div class="container" id="top">
-                <img src="../img/flex-logo.png" class="logo">
-                <nav class="header-nav">
+                <img src="../img/flex-logo.png" class="logo" onclick="location.href = '../main/main.html'">
+                <nav class = "header-nav">
                     <a class="header-nav-link" href="../main/main.html">Films</a>
-                    <a class="header-nav-link" href="#">Discount</a>
-                    <a class="header-nav-link" href="#">Schedule</a>
-                    <a class="header-nav-link" href="#">Support</a>
+                    <a class="header-nav-link" href="../discount/discount.html">Discount</a>
+                    <a class="header-nav-link" href="../search/search.html">Schedule</a>
+                    <a class="header-nav-link" href="https://www.youtube.com/watch?v=qP7uiX9i_9k" target="_blank">Support</a>
                 </nav>
                 <i class="fas fa-gift"></i>
                 <select class="cinema-list">
-                    <option>Winter FLEX</option>
+                    <option>Прометей, Pepege Street 1 </option>
                     <option>Spring FLEX</option>
                     <option>Summer FLEX</option>
                     <option>Autumn FLEX</option>
@@ -31,6 +31,18 @@
             </div>  
         </header>
         <main>
+            <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+                <input type="hidden" name="cmd" value="_xclick">
+                <input type="hidden" name="business" value="gijuko@doanart.com">
+                <input type="hidden" name="item_name" value="Описание товара или услуги">
+                <input type="hidden" name="item_number" value="User123">
+                <input type="hidden" name="currency_code" value="USD">
+                <input type="hidden" name="amount" value="10.00">
+                <input type="hidden" name="cancel_return" value="http://7kbsi8t64x.my.tw1.su">
+                <input type="hidden" name="return" value="http://7kbsi8t64x.my.tw1.su">
+                <input type="hidden" name="notify_url" value="http://7kbsi8t64x.my.tw1.su/ipn.php">
+                <input type="image" src="http://www.paypal.com/en_US/i/btn/x-click-but01.gif" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
+            </form>
             <!-- <script
             src="https://www.paypalobjects.com/api/checkout.js"> // Required. Replace SB_CLIENT_ID with your sandbox client ID.
           </script>
@@ -83,6 +95,8 @@
                 </div>
                 <div>
                     <h3>Latest updates</h3>
+                    <a href="https://drive.google.com/drive/u/0/my-drive" style="text-decoration: none; color: white" target="_blank">FLEX Mobile</a>
+
                 </div>
                 <div>
                     <h3>Contact Us</h3>

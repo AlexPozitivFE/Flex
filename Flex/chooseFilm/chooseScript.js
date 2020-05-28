@@ -1,5 +1,5 @@
 let a1 = localStorage.getItem('imgSrc');
-alert(a1);
+//alert(a1);
 let filmId;
 let section1 = document.querySelector('.container select');
 
@@ -32,7 +32,7 @@ function populateCinemas(jsonObj) {
     function checkList() {
         var select = document.getElementsByClassName('options');
             address = this.value;
-            alert(address);
+            //alert(address);
             //alert(currentCinema);
     }
 
@@ -51,11 +51,11 @@ function chooseFilm(jsonObj) {
         if(a1 == jsonObj[i]['image'] || a1 == jsonObj[i]['name']) {
             filmId = jsonObj[i]['idfilm'];
             localStorage.setItem('filmId', filmId);
-            alert(filmId);
+            //alert(filmId);
             let img = document.createElement('img');
             img.src = jsonObj[i]['image'];
             img.classList.add('image-film');
-            img.style = 'max-width: 300px; width: auto; margin: 30px 30px;';
+            img.style = 'max-width: 300px; width: auto; margin: 30px 30px;box-shadow: 0 0 10px rgba(0,0,0,0.5);';
             document.querySelector('.up').appendChild(img);
 
             let vdiv = document.createElement('div');
@@ -64,12 +64,12 @@ function chooseFilm(jsonObj) {
             if(jsonObj[i]['trailer'] === null) {
                 let imgv = document.createElement('img');
                 imgv.src = 'https://pmcvariety.files.wordpress.com/2013/10/film-placeholder.jpg?w=600';
-                imgv.style = 'width: 600px;';
+                imgv.style = 'width: 600px; box-shadow: 0 0 10px rgba(0,0,0,0.5);';
                 document.querySelector('.video').appendChild(imgv);
             } else {
             let video1 = document.createElement('iframe');
             video1.src = jsonObj[i]['trailer'];
-            video1.style = 'width: 600px; height: 425px;';
+            video1.style = 'width: 600px; height: 425px; box-shadow: 0 0 10px rgba(0,0,0,0.5);';
             video1.frameBorder = '0';
             document.querySelector('.video').appendChild(video1);
             }
@@ -99,7 +99,7 @@ function chooseFilm(jsonObj) {
             document.querySelector('.description').appendChild(p3);
 
             let desc = document.querySelector('.description');
-            desc.style = 'width: 550px';
+            desc.style = 'margin: 0px 30px; width: 550px';
         }
     }
 }
@@ -117,7 +117,8 @@ let hallsArr = [];
 let hallsInfo = [];
 let idSession = [];
 
-
+let calendar = document.getElementById('date-input');
+calendar.style = 'margin-left:30px; border: 2px solid #6200EE';
 document.getElementById('date-input').addEventListener('change', function() {
     input = this.value;
     filmDate = new Date(input);
@@ -128,7 +129,8 @@ document.getElementById('date-input').addEventListener('change', function() {
 document.getElementById('input-button').addEventListener('click', getFilmDate);
 document.getElementById('input-button').addEventListener('click', getFilmDateDB);
 document.getElementById('input-button').addEventListener('click', infoHalls);
-
+let subm = document.getElementById('input-button');
+subm.style = 'width:50px; height:24px; margin-left: 15px; color:white; background-color:#6200EE;border: 2px solid #6200EE; box-shadow: 0 0 10px rgba(0,0,0,0.5); ';
 
 function getFilmDate() {
     let month = String(filmDate.getMonth() + 1);
@@ -176,9 +178,9 @@ function getFilmDateDB() {
                 hourEnd.push(String(jsonObj[i]['end'].substring(11, 13)));
                 minuteEnd.push(String(jsonObj[i]['end'].substring(14, 16)));
                 filmDateArr.push(getFilmDataDB);
-                alert(hourStart);
-                alert(minuteStart);
-                alert(filmDateArr);
+                //alert(hourStart);
+                //alert(minuteStart);
+                //alert(filmDateArr);
             }
         }
     }
@@ -201,13 +203,14 @@ function infoHalls() {
             for(let j = 0; j<hallsArr.length; j++) {
                 if(hallsArr[j] == jsonObj[i]['idhall']) {
                     hallsInfo.push(`${jsonObj[i]['name']}, ${jsonObj[i]['type']}`);
-                    alert(hallsInfo);
+                    //alert(hallsInfo);
                 }
             }
         }
         showHalls();
         function showHalls() {
             let d = document.getElementById('halls-info');
+            d.style = 'margin: 20px 30px; width:140px; border:2px solid #6200EE; border-radius:4px; text-align:center; padding: 5px';
             let d_n = document.getElementsByClassName('div1');
             if(d.childNodes) {
                 while(d.firstChild) {
@@ -225,6 +228,7 @@ function infoHalls() {
                     
                     let button = document.createElement('button');
                     button.classList.add('div1-button');
+                    button.style = 'color:white; background-color:#6200EE; border: 2px solid #6200EE';
                     button.innerHTML = 'OK';
                     button.value = `${hallsInfo[i]}`;
                     button.id = `${idSession[i]}`;
@@ -277,7 +281,7 @@ let result;
             userArrName[i].push(jsonObj[i]['idaccount']);
             userArrName[i].push(jsonObj[i]['name']);
         }
-        alert(userArrName);
+        //alert(userArrName);
 
         let requestURL5 = 'https://restapicinema.herokuapp.com/reviews';
         let request5 = new XMLHttpRequest();
@@ -321,7 +325,7 @@ let result;
                 }
             }
             result = Math.floor(stars / comment);
-            alert(result);
+            //alert(result);
             let fb = document.createElement('h2');
             fb.innerHTML = 'Leave feedback';
             fb.style = 'margin: 10px 30px';
@@ -335,17 +339,18 @@ let result;
 
             let subm = document.createElement('button');
             subm.innerHTML = 'Leave';
-            subm.style = 'width:100px; height:35px; background-color:#6200EE;font-size:18px; color:white;';
+            subm.style = 'width:100px; height:35px; background-color:#6200EE;font-size:18px; color:white; border:2px solid #6200EE; box-shadow: 0 0 10px rgba(0,0,0,0.5);';
             document.querySelector('.reviews').appendChild(subm);
 
-            let mark = document.createElement('h3');
+            let mark = document.createElement('h2');
+            mark.style = 'margin-top: 10px;';
             mark.innerHTML = 'Mark';
             document.querySelector('.description').appendChild(mark);
             for(let i = 0; i < result; i++) {
                 let star = document.createElement('i');
                 star.classList.add('fa-star');
                 star.classList.add('fas');
-                star.style = 'width:30px; color: #6200EE;';
+                star.style = 'width:30px; color: #6200EE; margin-bottom: 10px;';
                 document.querySelector(`.description`).appendChild(star);
             }
         }

@@ -101,7 +101,7 @@ function getCheckedCheckBoxes() {
         formatArr.push(checkboxes[i].value); // положим в массив выбранный
        }
     }
-    alert(formatArr); // для использования в нужном месте
+    //alert(formatArr); // для использования в нужном месте
   }
 
 ///////////////////////////////////////////////////////////

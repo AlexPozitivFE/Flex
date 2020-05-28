@@ -36,7 +36,7 @@ function appearAccount(jsonObj) {
   let truth = false;
     for(let i = 0; i < jsonObj.length; i++) {
         if(jsonObj[i]['idaccount'] == idAccount) {
-            alert('Ты уже есть в базе!');
+            //alert('Ты уже есть в базе!');
             truth = true;
             
             idAccount = jsonObj[i]['idaccount'];
@@ -57,7 +57,7 @@ function appearAccount(jsonObj) {
         } 
     }
     if(truth == false) {
-      alert('Тебя нет в базе!');
+      //alert('Тебя нет в базе!');
       /*
       localStorage.setItem('idAccount', idAccount);
       localStorage.setItem('profileName', profileName);

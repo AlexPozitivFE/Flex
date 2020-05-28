@@ -3,11 +3,39 @@ let date = localStorage.getItem('date');
 let hall = localStorage.getItem('hall');
 //let hall = 'IMAX';
 let idSession = localStorage.getItem('idSession');
-alert(idSession);
+//alert(idSession);
 //alert(film);
 let total = 0;
 let mainDiv = document.querySelector('.film-pick');
 mainDiv.style = 'display: flex';
+
+let ttooll = document.getElementById('totall');
+
+let requestURL4 = 'https://restapicinema.herokuapp.com/cinema';
+let request4 = new XMLHttpRequest();
+request4.open('GET', requestURL4, true);
+request4.responseType = 'json';
+request4.send();
+request4.onload = function() {
+    var films4 = request4.response;
+    populateCinemas(films4);
+    //checkList();
+  }
+
+
+function populateCinemas(jsonObj) {
+    for(let j = 0; j < jsonObj.length; j++) {
+        let option = document.createElement('option');
+        option.innerHTML = `${jsonObj[j]['name']}, ${jsonObj[j]['adress']}`;
+        option.value = jsonObj[j]['idcinema'];
+        option.classList.add('options');
+        document.querySelector('.cinema-list').appendChild(option);
+       // section1.addEventListener('change', deletFilms);
+        if(j == 0) {
+            address = option.value;
+        }
+    }
+}
 
 let requestURL = 'https://restapicinema.herokuapp.com/films';
 let request = new XMLHttpRequest();
@@ -25,7 +53,7 @@ request.onload = function() {
                 let img = document.createElement('img');
                 img.src = jsonObj[i]['image'];
                 img.classList.add('image-film');
-                img.style = 'max-width: 300px; width: auto; margin: 30px 30px;';
+                img.style = 'max-width: 300px; width: auto; margin: 30px 30px; box-shadow: 0 0 20px rgba(0,0,0,0.5);';
                 document.querySelector('.film-desc').appendChild(img);
 
                 let h2_1 = document.createElement('h2');
@@ -72,7 +100,7 @@ let price;
                                 placeArr2.splice(i,1);
                             }
                     }
-                    alert(placeArr2);
+                    //alert(placeArr2);
                     places[i].style = 'background-color: #474441; text-align: center; align-items: center; color: white;';
                     });
                 }
@@ -124,16 +152,18 @@ let placeArr2 = [];
                                     placeArr2[0] = new Array();
                                     placeArr2[0].push(td.id);
                                     placeArr2[0].push(td.innerHTML);
-                                    alert(placeArr2);
+                                    //alert(placeArr2);
                                     total += price;
+                                    ttooll.innerHTML = `Total: ${total}`;
                                 } else {
                                     for(let i = placeArr2.length; i < placeArr2.length + 1; i+=2) {
                                         placeArr2[i] = new Array();
                                         placeArr2[i].push(td.id);
                                         placeArr2[i].push(td.innerHTML); 
                                         total += price;
+                                        ttooll.innerHTML = `Total: ${total}`;
                                     }
-                                    alert(placeArr2);
+                                    //alert(placeArr2);
                                 }
                                 td.style = 'width: 25px; height: 25px; background-color: #43AE32; text-align: center; align-items: center; color: white;';
                                 tdd = 'width: 25px; height: 25px; background-color: #43AE32; text-align: center; align-items: center; color: white;';
@@ -142,13 +172,14 @@ let placeArr2 = [];
                                         if(td.id == placeArr2[i][0] && td.innerHTML == placeArr2[i][1]) {
                                             placeArr2.splice(i,1);
                                             total -= price;
+                                            ttooll.innerHTML = `Total: ${total}`;
                                         }
                                 }
-                                alert(placeArr2);
+                                //alert(placeArr2);
                                 td.style = 'width: 25px; height: 25px; background-color: #330570; text-align: center; align-items: center; color: white;';
                                 tdd = 'width: 25px; height: 25px; background-color: #330570; text-align: center; align-items: center; color: white;';
                             }
-                            alert(total);
+                            //alert(total);
                         });
                         tr.appendChild(td);
                     }
@@ -191,15 +222,17 @@ let placeArr2 = [];
                                     placeArr2[0].push(td.id);
                                     placeArr2[0].push(td.innerHTML);
                                     total += price;
-                                    alert(placeArr2);
+                                    ttooll.innerHTML = `Total: ${total}`;
+                                    //alert(placeArr2);
                                 } else {
                                     for(let i = placeArr2.length; i < placeArr2.length + 1; i+=2) {
                                         placeArr2[i] = new Array();
                                         placeArr2[i].push(td.id);
                                         placeArr2[i].push(td.innerHTML); 
                                         total += price;
+                                        ttooll.innerHTML = `Total: ${total}`;
                                     }
-                                    alert(placeArr2);
+                                   // alert(placeArr2);
                                 }
                                 td.style = 'width: 25px; height: 25px; background-color: #43AE32; text-align: center; align-items: center; color: white;';
                                 tdd = 'width: 25px; height: 25px; background-color: #43AE32; text-align: center; align-items: center; color: white;';
@@ -208,13 +241,14 @@ let placeArr2 = [];
                                         if(td.id == placeArr2[i][0] && td.innerHTML == placeArr2[i][1]) {
                                             placeArr2.splice(i,1);
                                             total -= price;
+                                            ttooll.innerHTML = `Total: ${total}`;
                                         }
                                 }
-                                alert(placeArr2);
+                                //alert(placeArr2);
                                 td.style = 'width: 25px; height: 25px; background-color: #330570; text-align: center; align-items: center; color: white;';
                                 tdd = 'width: 25px; height: 25px; background-color: #330570; text-align: center; align-items: center; color: white;';
                             }
-                        alert(total);
+                        //alert(total);
                         });
                         tr.appendChild(td);
                     }
@@ -251,15 +285,17 @@ let placeArr2 = [];
                         placeArr2[0].push(td.id);
                         placeArr2[0].push(td.innerHTML);
                         total += price;
-                        alert(placeArr2);
+                        ttooll.innerHTML = `Total: ${total}`;
+                        //alert(placeArr2);
                     } else {
                         for(let i = placeArr2.length; i < placeArr2.length + 1; i+=2) {
                             placeArr2[i] = new Array();
                             placeArr2[i].push(td.id);
                             placeArr2[i].push(td.innerHTML); 
                             total += price;
+                            ttooll.innerHTML = `Total: ${total}`;
                         }
-                        alert(placeArr2);
+                        //alert(placeArr2);
                     }
                     td.style = 'width: 25px; height: 25px; background-color: #43AE32; text-align: center; align-items: center; color: white;';
                     tdd = 'width: 25px; height: 25px; background-color: #43AE32; text-align: center; align-items: center; color: white;';
@@ -268,13 +304,14 @@ let placeArr2 = [];
                             if(td.id == placeArr2[i][0] && td.innerHTML == placeArr2[i][1]) {
                                 placeArr2.splice(i,1);
                                 total -= price;
+                                ttooll.innerHTML = `Total: ${total}`;
                             }
                     }
-                    alert(placeArr2);
+                    //alert(placeArr2);
                     td.style = 'width: 25px; height: 25px; background-color: #330570; text-align: center; align-items: center; color: white;';
                     tdd = 'width: 25px; height: 25px; background-color: #330570; text-align: center; align-items: center; color: white;';
                 }
-                alert(total);
+                //alert(total);
             });
             tr.appendChild(td);
         }
@@ -321,15 +358,17 @@ function create_4D_0() {
                                 placeArr2[0].push(td.id);
                                 placeArr2[0].push(td.innerHTML);
                                 total += price;
-                                alert(placeArr2);
+                                ttooll.innerHTML = `Total: ${total}`;
+                                //alert(placeArr2);
                             } else {
                                 for(let i = placeArr2.length; i < placeArr2.length + 1; i+=2) {
                                     placeArr2[i] = new Array();
                                     placeArr2[i].push(td.id);
                                     placeArr2[i].push(td.innerHTML); 
                                     total += price;
+                                    ttooll.innerHTML = `Total: ${total}`;
                                 }
-                                alert(placeArr2);
+                                //alert(placeArr2);
                             }
                             td.style = 'width: 25px; height: 25px; background-color: #43AE32; text-align: center; align-items: center; color: white;';
                             tdd = 'width: 25px; height: 25px; background-color: #43AE32; text-align: center; align-items: center; color: white;';
@@ -338,13 +377,14 @@ function create_4D_0() {
                                     if(td.id == placeArr2[i][0] && td.innerHTML == placeArr2[i][1]) {
                                         placeArr2.splice(i,1);
                                         total -= price;
+                                        ttooll.innerHTML = `Total: ${total}`;
                                     }
                             }
-                            alert(placeArr2);
+                            //alert(placeArr2);
                             td.style = 'width: 25px; height: 25px; background-color: #330570; text-align: center; align-items: center; color: white;';
                             tdd = 'width: 25px; height: 25px; background-color: #330570; text-align: center; align-items: center; color: white;';
                         }
-                        alert(total);
+                       // alert(total);
                     });
                     tr.appendChild(td);
                 }
@@ -387,15 +427,17 @@ function create_4D_1() {
                                 placeArr2[0].push(td.id);
                                 placeArr2[0].push(td.innerHTML);
                                 total += price;
-                                alert(placeArr2);
+                                ttooll.innerHTML = `Total: ${total}`;
+                                //alert(placeArr2);
                             } else {
                                 for(let i = placeArr2.length; i < placeArr2.length + 1; i+=2) {
                                     placeArr2[i] = new Array();
                                     placeArr2[i].push(td.id);
                                     placeArr2[i].push(td.innerHTML); 
                                     total += price;
+                                    ttooll.innerHTML = `Total: ${total}`;
                                 }
-                                alert(placeArr2);
+                                //alert(placeArr2);
                             }
                             td.style = 'width: 25px; height: 25px; background-color: #43AE32; text-align: center; align-items: center; color: white;';
                             tdd = 'width: 25px; height: 25px; background-color: #43AE32; text-align: center; align-items: center; color: white;';
@@ -404,13 +446,14 @@ function create_4D_1() {
                                     if(td.id == placeArr2[i][0] && td.innerHTML == placeArr2[i][1]) {
                                         placeArr2.splice(i,1);
                                         total -= price;
+                                        ttooll.innerHTML = `Total: ${total}`;
                                     }
                             }
-                            alert(placeArr2);
+                            //alert(placeArr2);
                             td.style = 'width: 25px; height: 25px; background-color: #330570; text-align: center; align-items: center; color: white;';
                             tdd = 'width: 25px; height: 25px; background-color: #330570; text-align: center; align-items: center; color: white;';
                         }
-                        alert(total);
+                        //alert(total);
                     });
                     tr.appendChild(td);
                 }
@@ -447,15 +490,17 @@ function create_4D_M() {
                     placeArr2[0].push(td.id);
                     placeArr2[0].push(td.innerHTML);
                     total += price;
-                    alert(placeArr2);
+                    ttooll.innerHTML = `Total: ${total}`;
+                    //alert(placeArr2);
                 } else {
                     for(let i = placeArr2.length; i < placeArr2.length + 1; i+=2) {
                         placeArr2[i] = new Array();
                         placeArr2[i].push(td.id);
                         placeArr2[i].push(td.innerHTML); 
                         total += price;
+                        ttooll.innerHTML = `Total: ${total}`;
                     }
-                    alert(placeArr2);
+                    //alert(placeArr2);
                 }
                 td.style = 'width: 25px; height: 25px; background-color: #43AE32; text-align: center; align-items: center; color: white;';
                 tdd = 'width: 25px; height: 25px; background-color: #43AE32; text-align: center; align-items: center; color: white;';
@@ -464,13 +509,14 @@ function create_4D_M() {
                         if(td.id == placeArr2[i][0] && td.innerHTML == placeArr2[i][1]) {
                             placeArr2.splice(i,1);
                             total -= price;
+                            ttooll.innerHTML = `Total: ${total}`;
                         }
                 }
-                alert(placeArr2);
+                //alert(placeArr2);
                 td.style = 'width: 25px; height: 25px; background-color: #330570; text-align: center; align-items: center; color: white;';
                 tdd = 'width: 25px; height: 25px; background-color: #330570; text-align: center; align-items: center; color: white;';
             }
-            alert(total);
+            //alert(total);
         });
         tr.appendChild(td);
     }
@@ -517,15 +563,17 @@ function create_IMAX_0() {
                                 placeArr2[0].push(td.id);
                                 placeArr2[0].push(td.innerHTML);
                                 total += price;
-                                alert(placeArr2);
+                                ttooll.innerHTML = `Total: ${total}`;
+                                //alert(placeArr2);
                             } else {
                                 for(let i = placeArr2.length; i < placeArr2.length + 1; i+=2) {
                                     placeArr2[i] = new Array();
                                     placeArr2[i].push(td.id);
                                     placeArr2[i].push(td.innerHTML); 
                                     total += price;
+                                    ttooll.innerHTML = `Total: ${total}`;
                                 }
-                                alert(placeArr2);
+                                //alert(placeArr2);
                             }
                             td.style = 'width: 25px; height: 25px; background-color: #43AE32; text-align: center; align-items: center; color: white;';
                             tdd = 'width: 25px; height: 25px; background-color: #43AE32; text-align: center; align-items: center; color: white;';
@@ -534,13 +582,14 @@ function create_IMAX_0() {
                                     if(td.id == placeArr2[i][0] && td.innerHTML == placeArr2[i][1]) {
                                         placeArr2.splice(i,1);
                                         total -= price;
+                                        ttooll.innerHTML = `Total: ${total}`;
                                     }
                             }
-                            alert(placeArr2);
+                            //alert(placeArr2);
                             td.style = 'width: 25px; height: 25px; background-color: #330570; text-align: center; align-items: center; color: white;';
                             tdd = 'width: 25px; height: 25px; background-color: #330570; text-align: center; align-items: center; color: white;';
                         }
-                        alert(total);
+                       // alert(total);
                     });
                     tr.appendChild(td);
                 }
@@ -583,15 +632,17 @@ function create_IMAX_1() {
                                 placeArr2[0].push(td.id);
                                 placeArr2[0].push(td.innerHTML);
                                 total += price;
-                                alert(placeArr2);
+                                ttooll.innerHTML = `Total: ${total}`;
+                                //alert(placeArr2);
                             } else {
                                 for(let i = placeArr2.length; i < placeArr2.length + 1; i+=2) {
                                     placeArr2[i] = new Array();
                                     placeArr2[i].push(td.id);
                                     placeArr2[i].push(td.innerHTML); 
-                                    total == price;
+                                    total += price;
+                                    ttooll.innerHTML = `Total: ${total}`;
                                 }
-                                alert(placeArr2);
+                                //alert(placeArr2);
                             }
                             td.style = 'width: 25px; height: 25px; background-color: #43AE32; text-align: center; align-items: center; color: white;';
                             tdd = 'width: 25px; height: 25px; background-color: #43AE32; text-align: center; align-items: center; color: white;';
@@ -600,13 +651,14 @@ function create_IMAX_1() {
                                     if(td.id == placeArr2[i][0] && td.innerHTML == placeArr2[i][1]) {
                                         placeArr2.splice(i,1);
                                         total -= price;
+                                        ttooll.innerHTML = `Total: ${total}`;
                                     }
                             }
-                            alert(placeArr2);
+                            //alert(placeArr2);
                             td.style = 'width: 25px; height: 25px; background-color: #330570; text-align: center; align-items: center; color: white;';
                             tdd = 'width: 25px; height: 25px; background-color: #330570; text-align: center; align-items: center; color: white;';
                         }
-                        alert(total);
+                        //alert(total);
                     });
                     tr.appendChild(td);
                 }
@@ -643,15 +695,17 @@ function create_IMAX_M() {
                     placeArr2[0].push(td.id);
                     placeArr2[0].push(td.innerHTML);
                     total += price;
-                    alert(placeArr2);
+                    ttooll.innerHTML = `Total: ${total}`;
+                    //alert(placeArr2);
                 } else {
                     for(let i = placeArr2.length; i < placeArr2.length + 1; i+=2) {
                         placeArr2[i] = new Array();
                         placeArr2[i].push(td.id);
                         placeArr2[i].push(td.innerHTML); 
                         total += price;
+                        ttooll.innerHTML = `Total: ${total}`;
                     }
-                    alert(placeArr2);
+                    //alert(placeArr2);
                 }
                 td.style = 'width: 25px; height: 25px; background-color: #43AE32; text-align: center; align-items: center; color: white;';
                 tdd = 'width: 25px; height: 25px; background-color: #43AE32; text-align: center; align-items: center; color: white;';
@@ -660,13 +714,14 @@ function create_IMAX_M() {
                         if(td.id == placeArr2[i][0] && td.innerHTML == placeArr2[i][1]) {
                             placeArr2.splice(i,1);
                             total -= price;
+                            ttooll.innerHTML = `Total: ${total}`;
                         }
                 }
-                alert(placeArr2);
+                //alert(placeArr2);
                 td.style = 'width: 25px; height: 25px; background-color: #330570; text-align: center; align-items: center; color: white;';
                 tdd = 'width: 25px; height: 25px; background-color: #330570; text-align: center; align-items: center; color: white;';
             }
-            alert(total);
+            //alert(total);
         });
         tr.appendChild(td);
     }
@@ -688,16 +743,20 @@ request3.onload = function() {
         for(let i = 0; i < jsonObj.length; i++) {
             if(idSession == jsonObj[i]['idsession']) {
                 price = jsonObj[i]['baseprice']
-                alert(price);
+                //section1alert(price);
                 break;
             }
         }
   }
 
    let basket = document.querySelector('.basket_button');
+   basket.style = 'width:159px; height:35px; background-color: #6200EE; border:2px solid #6200EE; color:white; font-size:25px; box-shadow: 0 0 10px rgba(0,0,0,0.5); margin-top:135px; margin-left:30px';
    basket.addEventListener('click', function() {
         localStorage.setItem('placeArr', placeArr2);
         localStorage.setItem('total', total);
         location.href = '../basket/basket.html';
         
    });
+
+   let divt = document.querySelector('.pick-place');
+   divt.style = 'margin-top:30px;';
