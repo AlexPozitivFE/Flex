@@ -31,7 +31,43 @@
             </div>  
         </header>
         <main>
-            
+            <!-- <script
+            src="https://www.paypalobjects.com/api/checkout.js"> // Required. Replace SB_CLIENT_ID with your sandbox client ID.
+          </script>
+            <div id="paypal-button"></div>
+            <script>
+                paypal.Button.render({
+                    env: 'sandbox',
+                    client: {
+                        sandbox: 'demo_sandbox_Client_id',
+                        production: 'demo_production_client_id'
+                    },
+
+                    locale: 'en_US',
+                    style {
+                        size: 'small',
+                        color: 'gold',
+                        shape: 'pill',
+                    },
+
+                    payment: function(data, actions) {
+                        return actions.payment.create({
+                            transactions: [{
+                                amount: {
+                                    total: '0.01',
+                                    currency : 'USD'
+                                }
+                            }]
+                        });
+                    },
+                    
+                    onAuthorize: function(data, actions) {
+                        return actions.payment.execute().then(function() {
+                            window.alert('Blyat');
+                        });
+                    }
+                }, '#paypal-button');
+            </script> -->
         </main>
 
         <footer>

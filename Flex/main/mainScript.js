@@ -211,4 +211,13 @@ window.onload = function() {
             alert(imgSrc);
         }); 
     }
+    button2 = document.getElementsByClassName('images2');
+    for(let i = 0; i<button2.length; i++) {
+        button2[i].addEventListener('click', function() {
+            imgSrc = '';
+            imgSrc = this.src;
+            localStorage.setItem('imgSrc', imgSrc);
+            alert(imgSrc);
+        }); 
+    }
 }

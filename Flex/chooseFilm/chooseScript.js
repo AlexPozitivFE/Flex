@@ -51,6 +51,7 @@ function chooseFilm(jsonObj) {
         if(a1 == jsonObj[i]['image'] || a1 == jsonObj[i]['name']) {
             filmId = jsonObj[i]['idfilm'];
             localStorage.setItem('filmId', filmId);
+            alert(filmId);
             let img = document.createElement('img');
             img.src = jsonObj[i]['image'];
             img.classList.add('image-film');
@@ -60,11 +61,18 @@ function chooseFilm(jsonObj) {
             let vdiv = document.createElement('div');
             vdiv.classList.add('video');
             document.querySelector('.up').appendChild(vdiv);
+            if(jsonObj[i]['trailer'] === null) {
+                let imgv = document.createElement('img');
+                imgv.src = 'https://pmcvariety.files.wordpress.com/2013/10/film-placeholder.jpg?w=600';
+                imgv.style = 'width: 600px;';
+                document.querySelector('.video').appendChild(imgv);
+            } else {
             let video1 = document.createElement('iframe');
             video1.src = jsonObj[i]['trailer'];
             video1.style = 'width: 600px; height: 425px;';
             video1.frameBorder = '0';
             document.querySelector('.video').appendChild(video1);
+            }
             let div = document.querySelector('.up');
             div.style = 'display: flex; align-items: center;';
            /* let video = document.createElement('video');
@@ -240,5 +248,106 @@ function infoHalls() {
                 }
             }
         }   
+    }
+}
+
+let userArrName = [];
+
+
+//function getReviews(jsonObj) {
+window.onload = function() {
+    let requestURL6 = 'https://restapicinema.herokuapp.com/accounts';
+    let request6 = new XMLHttpRequest();
+    request6.open('GET', requestURL6, true);
+    request6.responseType = 'json';
+    request6.send();
+    request6.onload = function() {
+        var films6 = request6.response;
+        getUsers(films6);
+    }
+let stars = 0;
+let comment = 0;
+let result;
+    function getUsers(jsonObj) {
+        for(let i = 0; i < jsonObj.length; i++) {
+            // placeArr2[i] = new Array();
+            //                 placeArr2[i].push(td.id);
+            //                 placeArr2[i].push(td.innerHTML); 
+            userArrName[i] = new Array();
+            userArrName[i].push(jsonObj[i]['idaccount']);
+            userArrName[i].push(jsonObj[i]['name']);
+        }
+        alert(userArrName);
+
+        let requestURL5 = 'https://restapicinema.herokuapp.com/reviews';
+        let request5 = new XMLHttpRequest();
+        request5.open('GET', requestURL5, true);
+        request5.responseType = 'json';
+        request5.send();
+        request5.onload = function() {
+            var films5 = request5.response;
+            getReviews(films5);
+        }
+
+        function getReviews(jsonObj) {
+            stars = 0;
+            comment = 0;
+            for(let i = 0; i < jsonObj.length; i++) {
+                if(filmId == jsonObj[i]['idfilm']) {
+                    let divRev = document.createElement('div');
+                    divRev.classList.add(`divRev${i}`);
+                    divRev.style = 'width: 650px; border: 2px solid #474441; margin: 30px 30px;';
+                    document.querySelector('.reviews').appendChild(divRev);
+                    for(let j = 0; j < userArrName.length; j++) {
+                        if(userArrName[j][0] == jsonObj[i]['idaccount']) {
+                            comment++;
+                            let name = document.createElement('h3');
+                            name.innerHTML = userArrName[j][1];
+                            document.querySelector(`.divRev${i}`).appendChild(name);
+
+                            let text = document.createElement('p');
+                            text.innerHTML = jsonObj[i]['text'];
+                            document.querySelector(`.divRev${i}`).appendChild(text);
+                            for(let k = 0; k < jsonObj[i]['mark']; k++) {
+                                let star = document.createElement('i');
+                                star.classList.add('fa-star');
+                                star.classList.add('fas');
+                                star.style = 'width:30px; color: #6200EE;';
+                                document.querySelector(`.divRev${i}`).appendChild(star);
+                                stars++;
+                            }
+                        }
+                    }
+                }
+            }
+            result = Math.floor(stars / comment);
+            alert(result);
+            let fb = document.createElement('h2');
+            fb.innerHTML = 'Leave feedback';
+            fb.style = 'margin: 10px 30px';
+            document.querySelector('.reviews').appendChild(fb);
+
+            let feedback = document.createElement('input');
+            feedback.type = 'text';
+            feedback.placeholder = 'Feedback...';
+            feedback.style = 'width: 650px; margin: 30px 30px; height:50px';
+            document.querySelector('.reviews').appendChild(feedback);
+
+            let subm = document.createElement('button');
+            subm.innerHTML = 'Leave';
+            subm.style = 'width:100px; height:35px; background-color:#6200EE;font-size:18px; color:white;';
+            document.querySelector('.reviews').appendChild(subm);
+
+            let mark = document.createElement('h3');
+            mark.innerHTML = 'Mark';
+            document.querySelector('.description').appendChild(mark);
+            for(let i = 0; i < result; i++) {
+                let star = document.createElement('i');
+                star.classList.add('fa-star');
+                star.classList.add('fas');
+                star.style = 'width:30px; color: #6200EE;';
+                document.querySelector(`.description`).appendChild(star);
+            }
+        }
     }
 }

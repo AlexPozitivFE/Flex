@@ -104,28 +104,11 @@ function showUser() {
     document.querySelector('.userDesc').appendChild(h3_6);
 }
 
-let requestURL3 = `https://restapicinema.herokuapp.com/tickets/find?idaccount=${idAccount}`;
-let request3 = new XMLHttpRequest();
-request3.open('GET', requestURL3, true);
-request3.responseType = 'json';
-request3.send();
-request3.onload = function() {
-    var films3 = request3.response;
-    appearRang(films3);
-}
 
-function appearRang(jsonObj) {
-  sessionTicketArr = [];
-  for(let i = 0; i < jsonObj.length; i++) {
-    sessionTicketArr.push(jsonObj[i]['idsession']);
-  }
-  alert(sessionTicketArr);
-}
-
-let requestURL2 = `https://restapicinema.herokuapp.com/sessions`;
+let requestURL2 = `https://restapicinema.herokuapp.com/accounts/hours?idaccount=${idAccount}`;
 let request2 = new XMLHttpRequest();
 request2.open('GET', requestURL2, true);
-request2.responseType = 'json';
+//request2.responseType = 'json';
 request2.send();
 request2.onload = function() {
     var films2 = request2.response;
@@ -134,17 +117,7 @@ request2.onload = function() {
 
 function appearSession(jsonObj) {
   totalHours = 0;
-    for(let i = 0; i < jsonObj.length; i++) {
-        for(let j = 0; j < sessionTicketArr.length; j++) {
-            if(sessionTicketArr[j] == jsonObj[i]['idsession']) {
-              let start = new Date(jsonObj[i]['start']);
-              let end = new Date(jsonObj[i]['end']);
-              let dif = end - start;
-              dif = dif / 3600 / 1000;
-              totalHours += dif;
-            }
-        }
-    }
+    totalHours = this.responseText;
     let h3_6_2 = document.querySelector('.h3_6');
     if(totalHours == 0) {
       h3_6_2.innerHTML = `Rang: Nowby`;
